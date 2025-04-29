@@ -363,6 +363,12 @@ function M.create_test_file_extensions_matcher(intermediate_extensions, end_exte
       return false
     end
 
+    -- Match plain .ts files
+    if string.match(file_path, "%.ts$") then
+      return true
+    end
+
+    -- Match files with intermediate extensions
     for _, iext in ipairs(intermediate_extensions) do
       for _, eext in ipairs(end_extensions) do
         if string.match(file_path, iext .. "%." .. eext .. "$") then
